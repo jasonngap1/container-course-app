@@ -6,7 +6,7 @@ function Title() {
   const [title, setTitle] = useState("");
 
   useEffect(() => {
-    axios("http://localhost:5000/")
+    axios("https://server-qnkf.onrender.com/")
       .then((response) => {
         setTitle(response.data["random_line"]);
       })
