@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  client:
+    image: frontend
+    build: 'client/'
+    hostname: localhost
+    ports:
+      - 3000:3000
+  server:
+    image: backend
+    build: 'server/'
+    ports:
+      - 5000:5000
+    networks:
+      - test_network
+  sql:
+    image: mysql:5.7.41
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - 3306:3306
+    networks:
+      - test_network
+
+networks:
+  test_network:
+    driver: bridge
