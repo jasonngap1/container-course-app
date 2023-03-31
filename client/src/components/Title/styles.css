@@ -1,0 +1,6 @@
+:local(.title) {
+    text-align: center;
+    width: 1000px;
+    outline: 5px solid black;
+    margin: 350px;
+}

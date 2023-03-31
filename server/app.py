@@ -1,42 +1,23 @@
-import time
 import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import mysql.connector as db
+import random
 
 app = Flask(__name__)
 CORS(app)
 
+ls = [
+    "Logic will get you from A to B. Imagination will take you everywhere.",
+    "There are 10 kinds of people. Those who know binary and those who don't.",
+    "There are two ways of constructing a software design. One way is to make it so simple that there are obviously no deficiencies and the other is to make it so complicated that there are no obvious deficiencies.",
+    "It's not that I'm so smart, it's just that I stay with problems longer.",
+    "It is pitch dark. You are likely to be eaten by a grue."
+]
+
 @app.route('/', methods=['GET'])
-def get_current_time():
-    return jsonify({'time': time.time(), 'args': request.args.get("text")}), 200
-
-@app.route('/retrieve_database', methods=['GET'])
-def retrieve_database():
-    try:
-        mydb = db.connect(
-            host="sql",
-            user="user",
-            password="password"
-        )
-
-        # connect to database and retrieve data
-        cur = mydb.cursor(buffered=True)
-        cur.execute("CREATE TABLE db.Orders (OrderTime datetime, Item varchar(100) NOT NULL);")
-        mydb.commit()
-        cur.execute('SELECT * FROM db.Orders')
-        result = cur.fetchall()
-
-        # close connection
-        if mydb:
-            cur.close()
-            mydb.close()
-
-    except Exception as e:
-        print(e)
-        return jsonify({'status': 500, 'error': str(e)}), 500
-    
-    return jsonify({'status': 200, 'data': str(result)}), 200
+def get_lines():
+    random_line = random.choice(ls)
+    return jsonify({'random_line': random_line}), 200
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))

@@ -1,10 +1,11 @@
-import Example from "./example/index";
+import React from "react";
+import Title from "./Title/index";
 
 function App() {
 
   return (
     <div className="App">
-      <Example />
+      <Title />
     </div>
   );
 }
