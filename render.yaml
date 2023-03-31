@@ -1,0 +1,11 @@
+services:
+  # A Docker web service
+  - type: web
+    name: client
+    env: docker
+    rootDir: ./client
+
+  - type: web
+    name: server
+    env: docker
+    rootDir: ./server
