@@ -15,7 +15,7 @@ function Title() {
   return (
 		<div className={styles.title}>
       <div>
-        <img src="logo192.png" className={styles.pic}/>
+        <img src="logo192.png" alt="picture" className={styles.pic}/>
         <h1 className={styles.titleBig}>{title}</h1>
       </div>
 
